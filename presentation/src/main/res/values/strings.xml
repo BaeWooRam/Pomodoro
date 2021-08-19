@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pomodoro</string>
+
+    <!--  메인 -->
+    <string name="notification_time_title">알림 시간</string>
+    <string name="notification_rest_time_title">쉬는 시간</string>
+</resources>

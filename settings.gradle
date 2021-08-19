@@ -1,0 +1,4 @@
+rootProject.name = "Pomodoro"
+include ':presentation'
+include ':data'
+include ':domain'

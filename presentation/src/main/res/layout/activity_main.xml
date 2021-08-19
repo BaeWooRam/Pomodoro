@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/tvNotificationTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_time_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <NumberPicker
+        android:theme="@style/AppTheme.Picker"
+        android:id="@+id/npHour"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/tvHourTitle"
+        app:layout_constraintTop_toTopOf="@id/tvHourTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvHourTitle" />
+
+    <TextView
+        android:id="@+id/tvHourTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시간"
+        android:textSize="@dimen/notification_timer_text_size"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintEnd_toStartOf="@id/npMinute"
+        app:layout_constraintTop_toTopOf="@id/npMinute"
+        app:layout_constraintBottom_toBottomOf="@id/npMinute"/>
+
+    <NumberPicker
+        android:theme="@style/AppTheme.Picker"
+        android:id="@+id/npMinute"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:divider="@color/red_700"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationTime"
+        app:layout_constraintBottom_toTopOf="@id/guideline"/>
+
+    <TextView
+        android:id="@+id/tvMinuteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="분"
+        android:textSize="@dimen/notification_timer_text_size"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintStart_toEndOf="@id/npMinute"
+        app:layout_constraintTop_toTopOf="@id/npMinute"
+        app:layout_constraintBottom_toBottomOf="@id/npMinute"/>
+
+    <NumberPicker
+        android:theme="@style/AppTheme.Picker"
+        android:id="@+id/npSecond"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@id/tvMinuteTitle"
+        app:layout_constraintTop_toTopOf="@id/tvMinuteTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvMinuteTitle"/>
+
+    <TextView
+        android:id="@+id/tvSecondTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="초"
+        android:textSize="@dimen/notification_timer_text_size"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintStart_toEndOf="@id/npSecond"
+        app:layout_constraintTop_toTopOf="@id/npSecond"
+        app:layout_constraintBottom_toBottomOf="@id/npSecond"/>
+
+    <TextView
+        android:id="@+id/tvNotificationRestTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_rest_time_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline"/>
+
+    <NumberPicker
+        android:theme="@style/AppTheme.Picker"
+        android:id="@+id/npRestMinute"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:divider="@color/red_700"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationRestTime"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvRestMinuteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="분"
+        android:textSize="@dimen/notification_timer_text_size"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintStart_toEndOf="@id/npRestMinute"
+        app:layout_constraintTop_toTopOf="@id/npRestMinute"
+        app:layout_constraintBottom_toBottomOf="@id/npRestMinute"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
