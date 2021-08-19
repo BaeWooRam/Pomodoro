@@ -1,4 +1,4 @@
-package com.geekstudio.pomodoro.ui
+package com.geekstudio.pomodoro.ui.main
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
