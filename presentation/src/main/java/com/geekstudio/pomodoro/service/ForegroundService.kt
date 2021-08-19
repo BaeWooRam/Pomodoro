@@ -10,6 +10,9 @@ import android.util.Log
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.geekstudio.pomodoro.Config
+import com.geekstudio.pomodoro.R
+import com.geekstudio.pomodoro.ui.SplashActivity
 
 class ForegroundService:Service() {
 
@@ -27,68 +30,48 @@ class ForegroundService:Service() {
     }
 
     private fun startForegroundService() {
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val notificationIntent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
             this,
             0,
-            notificationIntent,
+            Intent(this, SplashActivity::class.java),
             PendingIntent.FLAG_CANCEL_CURRENT
         )
-        val remoteViews = RemoteViews(packageName, R.layout.notification)
 
         var builder: NotificationCompat.Builder =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                createChannel(notificationManager, notificationID)
+                createChannel(notificationManager, Config.CHANNEL_ID)
 
 
-                /*    val defaultSoundUri: Uri =
-                        RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-                    val r = RingtoneManager.getRingtone(applicationContext, defaultSoundUri)
-                    r.play()*/
-
-                NotificationCompat.Builder(
-                    applicationContext,
-                    notificationID
-                )
-                    .setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("title")
-                    .setContentText("contents")
-                    .setContentIntent(pendingIntent)
+                NotificationCompat.Builder(applicationContext, Config.CHANNEL_ID)
+            } else
+                NotificationCompat.Builder(applicationContext)
 
 
-            } else {
+        builder.setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle(getString(R.string.notification_foreground_title))
+            .setContentText(getString(R.string.notification_foreground_content))
+            .setPriority(Notification.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
 
-                val builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext)
-
-                builder.setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("title")
-                    .setContentText("contents")
-                    .setPriority(Notification.PRIORITY_DEFAULT)
-                    .setContentIntent(pendingIntent)
-            }
-
-        startForeground(1, builder.build())
+        startForeground(Config.NOTIFICATION_FOREGROUND_ID, builder.build())
     }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createChannel(manager: NotificationManager, id: String) {
-        Log.i("Build.VERSION_CODES.O", "이상")
         var channel = NotificationChannel(
             id,
-            "포그라운서비스",
-
-            if(isSound) NotificationManager.IMPORTANCE_DEFAULT else NotificationManager.IMPORTANCE_LOW
+            getString(R.string.notification_channel_name),
+            NotificationManager.IMPORTANCE_DEFAULT
         )
-        channel.description = "Sound Channel Description"
+
+        channel.description = getString(R.string.notification_channel_description)
         channel.enableLights(true)
         channel.lightColor = Color.GREEN
 
         manager.createNotificationChannel(channel)
-        Log.i("isSound","new notification id = $id")
     }
+
 }

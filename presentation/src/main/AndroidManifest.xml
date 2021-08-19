@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pomodoro">
+
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Pomodoro.NoActionBar">
             <intent-filter>
@@ -23,12 +24,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Pomodoro.NoActionBar"
+            android:launchMode="singleInstance"/>
+
         <service android:name=".service.ForegroundService"
             android:foregroundServiceType="connectedDevice"
             android:enabled="true"
             android:exported="true"/>
-
-
     </application>
 
 </manifest>

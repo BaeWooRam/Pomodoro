@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme.Picker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:textColorPrimary">@color/red_700</item>
+        <item name="android:textColorPrimary">?attr/colorPrimaryVariant</item>
         <item name="android:fontFamily">sans-serif-black</item>
         <item name="android:textSize">22sp</item>
-        <item name="colorControlNormal">@color/red_200</item>
+        <item name="colorControlNormal">?attr/colorPrimary</item>
     </style>
 
 

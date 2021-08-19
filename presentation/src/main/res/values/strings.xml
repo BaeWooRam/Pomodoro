@@ -4,4 +4,11 @@
     <!--  메인 -->
     <string name="notification_time_title">알림 시간</string>
     <string name="notification_rest_time_title">쉬는 시간</string>
+
+    <!--  서비스 -->
+    <string name="notification_foreground_title">Pomodoro 알림</string>
+    <string name="notification_foreground_content">서비스 실행 중</string>
+
+    <string name="notification_channel_name">알림</string>
+    <string name="notification_channel_description">Pomodoro 쉬는 시간, 일하는 시간 알림</string>
 </resources>

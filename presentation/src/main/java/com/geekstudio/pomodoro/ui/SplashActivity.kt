@@ -1,23 +1,27 @@
 package com.geekstudio.pomodoro.ui
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import com.geekstudio.pomodoro.R
 import com.geekstudio.pomodoro.databinding.ActivityMainBinding
+import com.geekstudio.pomodoro.ui.main.MainActivity
+import com.geekstudio.pomodoro.util.ActivityUtil
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        //Splash 유지 이후 Handling
+        Handler(mainLooper).postDelayed({
+            ActivityUtil.openActivity(this@SplashActivity, MainActivity::class.java)
+            finish()
+        }, SPLASH_DISPLAY_LENGTH)
+    }
+
+    companion object{
+        const val TAG = "SplashActivity"
+        const val SPLASH_DISPLAY_LENGTH = 3000L
     }
 }
