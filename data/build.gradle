@@ -48,4 +48,5 @@ dependencies {
 
     //multi module
     implementation project(':domain')
+    implementation project(':entity')
 }
