@@ -56,4 +56,9 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
 
     implementation "androidx.room:room-runtime:$room_version"
+
+    //multi module
+    implementation project(':domain')
+    implementation project(':data')
+    implementation project(':entity')
 }
