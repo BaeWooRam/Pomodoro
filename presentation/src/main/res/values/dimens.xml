@@ -1,4 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="vertical_margin">16dp</dimen>
+    <dimen name="common_vertical_margin">20dp</dimen>
+    <dimen name="common_horizontal_margin">20dp</dimen>
+
     <dimen name="notification_timer_text_size">12dp</dimen>
 </resources>
