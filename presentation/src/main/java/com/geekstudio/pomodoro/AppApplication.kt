@@ -2,11 +2,19 @@ package com.geekstudio.pomodoro
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
+import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatDialog
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.geekstudio.pomodoro.module.appModule
+import com.geekstudio.pomodoro.module.notificationModule
+import com.geekstudio.pomodoro.module.viewModelModule
+import com.geekstudio.pomodoro.service.ForegroundService
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -25,7 +33,7 @@ class AppApplication : Application() {
         startKoin{
             androidLogger()
             androidContext(this@AppApplication)
-            modules(appModule)
+            modules(appModule, viewModelModule, notificationModule)
         }
     }
 
