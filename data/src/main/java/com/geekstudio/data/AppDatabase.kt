@@ -21,5 +21,5 @@ abstract class AppDatabase : RoomDatabase() {
             }
     }
 
-    abstract fun getSensorDataDao(): RecipientDAO
+    abstract fun getRecipientDao(): RecipientDAO
 }
