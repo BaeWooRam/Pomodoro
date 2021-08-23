@@ -5,8 +5,8 @@ import com.geekstudio.entity.NotificationTime
 
 
 interface NotificationTimeLocalDataSource {
-    fun setNotificationTime(notificationTime: NotificationTime)
+    fun setNotificationWorkTime(notificationTime: NotificationTime)
     fun setNotificationRestTime(notificationTime: NotificationTime)
-    fun getNotificationTime(): NotificationTime
+    fun getNotificationWorkTime(): NotificationTime
     fun getNotificationRestTime(): NotificationTime
 }

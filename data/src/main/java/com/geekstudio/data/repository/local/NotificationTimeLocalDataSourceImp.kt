@@ -1,25 +1,28 @@
 package com.geekstudio.data.repository.local
 
 import com.geekstudio.data.AppPreferences
-import com.geekstudio.data.db.RecipientEntity
 import com.geekstudio.entity.NotificationTime
 
 class NotificationTimeLocalDataSourceImp(private val appPreferences: AppPreferences) : NotificationTimeLocalDataSource {
-    override fun setNotificationTime(notificationTime: NotificationTime) {
-        appPreferences.setNotificationTime(notificationTime.toString())
+    override fun setNotificationWorkTime(notificationTime: NotificationTime) {
+        appPreferences.setNotificationWorkTime(notificationTime.toString())
     }
 
     override fun setNotificationRestTime(notificationTime: NotificationTime) {
         appPreferences.setNotificationRestTime(notificationTime.toString())
     }
 
-    override fun getNotificationTime(): NotificationTime {
-        val time = appPreferences.getNotificationTime()
+    /**
+     * 알림 시간
+     * 기본 시간 25분
+     */
+    override fun getNotificationWorkTime(): NotificationTime {
+        val time = appPreferences.getNotificationWorkTime()
 
         return if(time != null)
             NotificationTime.covertNotification(time)
         else
-            NotificationTime(0,0,0)
+            NotificationTime(0,25,0)
     }
 
     override fun getNotificationRestTime(): NotificationTime {
@@ -28,7 +31,7 @@ class NotificationTimeLocalDataSourceImp(private val appPreferences: AppPreferen
         return if(restTime != null)
             NotificationTime.covertNotification(restTime)
         else
-            NotificationTime(0,0,0)
+            NotificationTime(0,5,0)
     }
 
 }
