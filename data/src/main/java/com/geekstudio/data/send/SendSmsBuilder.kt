@@ -1,29 +1,29 @@
-package com.geekstudio.data.sms
+package com.geekstudio.data.send
 
 import android.telephony.SmsManager
 import java.lang.Exception
 
-class SendSmsBuilder : SendSms, SendSms.Target, SendSms.Message {
+class SendSmsBuilder : BaseSend<String, SendSmsBuilder.Sender> {
     private var message: String? = null
     private val phoneNumbers: ArrayList<String> = arrayListOf()
-    private var listener: SendSms.SmsListener? = null
+    private var listener: BaseSend.SmsListener? = null
 
-    override fun target(phoneNumbers: List<String>): SendSms.Message {
+    override fun target(phoneNumbers: List<String>): BaseSend<String, Sender> {
         this@SendSmsBuilder.phoneNumbers.addAll(phoneNumbers)
         return this@SendSmsBuilder
     }
 
-    override fun target(phoneNumber: String): SendSms.Message {
+    override fun target(phoneNumber: String): BaseSend<String, Sender> {
         this@SendSmsBuilder.phoneNumbers.add(phoneNumber)
         return this@SendSmsBuilder
     }
 
-    override fun message(msg: String): SendSms {
+    override fun message(msg: String): BaseSend<String, Sender> {
         this@SendSmsBuilder.message = msg
         return this@SendSmsBuilder
     }
 
-    override fun listener(listener: SendSms.SmsListener): SendSms {
+    override fun listener(listener: BaseSend.SmsListener): BaseSend<String, Sender> {
         this@SendSmsBuilder.listener = listener
         return this@SendSmsBuilder
     }
@@ -44,7 +44,7 @@ class SendSmsBuilder : SendSms, SendSms.Target, SendSms.Message {
     class Sender(
         private val phoneNumbers: List<String>,
         private val msg: String,
-        private val listener: SendSms.SmsListener?,
+        private val listener: BaseSend.SmsListener?,
     ) {
         private val smsManager = SmsManager.getDefault()
 
