@@ -1,5 +1,6 @@
 package com.geekstudio.pomodoro.ui.main
 
+import android.Manifest
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,11 +9,13 @@ import android.widget.NumberPicker
 import com.geekstudio.entity.NotificationTime
 import com.geekstudio.pomodoro.R
 import com.geekstudio.pomodoro.databinding.ActivityMainBinding
+import com.geekstudio.pomodoro.permission.Permission
 import com.geekstudio.pomodoro.service.ForegroundService
 import com.geekstudio.pomodoro.ui.base.BaseActivity
+import com.geekstudio.pomodoro.ui.base.BasePermissionActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity(), NumberPicker.OnValueChangeListener {
+class MainActivity : BasePermissionActivity(), NumberPicker.OnValueChangeListener {
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModel<MainViewModel>()
     private var serviceIntent: Intent? = null
@@ -23,6 +26,23 @@ class MainActivity : BaseActivity(), NumberPicker.OnValueChangeListener {
         setContentView(binding.root)
         initView()
         initService()
+        executeCheckPermission()
+    }
+
+    override fun getPermissionListener(): Permission.PermissionListener {
+        return object :Permission.PermissionListener{
+            override fun onGrantedPermission() {
+            }
+
+            override fun onDenyPermission(denyPermissions: Array<String>) {
+                showMessage(getString(R.string.error_deny_permission))
+                finish()
+            }
+        }
+    }
+
+    override fun getCheckPermission(): Array<String> {
+        return arrayOf(Manifest.permission.SEND_SMS)
     }
 
     private fun initService() {
