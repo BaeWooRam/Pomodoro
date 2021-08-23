@@ -1,10 +1,9 @@
-package com.geekstudio.pomodoro.ui.recipient
+package com.geekstudio.pomodoro.ui.recipient.list
 
 import com.geekstudio.data.db.RecipientEntity
-import com.geekstudio.data.repository.local.NotificationTimeLocalDataSourceImp
 import com.geekstudio.data.repository.local.RecipientLocalDataSourceImp
-import com.geekstudio.pomodoro.listener.TaskCompleteListener
-import com.geekstudio.pomodoro.listener.TaskListener
+import com.geekstudio.data.listener.TaskCompleteListener
+import com.geekstudio.data.listener.TaskListener
 import com.geekstudio.pomodoro.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
