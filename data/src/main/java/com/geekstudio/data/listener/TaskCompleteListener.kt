@@ -1,4 +1,4 @@
-package com.geekstudio.pomodoro.listener
+package com.geekstudio.data.listener
 
 interface TaskCompleteListener {
     fun onSuccess()
