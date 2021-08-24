@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".AppApplication"
@@ -25,9 +26,32 @@
         </activity>
 
         <activity
+            android:name=".ui.test.KakaoTestActivity"
+            android:label="@string/app_name"/>
+
+        <activity
+            android:name=".ui.recipient.contacts.ContactsActivity"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".ui.recipient.list.RecipientActivity"
+            android:launchMode="singleTop"/>
+
+        <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name"
             android:launchMode="singleInstance"/>
+
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakaobf528b934133e275673174bccc1a8785" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".service.ForegroundService"
             android:foregroundServiceType="connectedDevice"

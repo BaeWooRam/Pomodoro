@@ -10,7 +10,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:text="@string/recipient_title"
+        android:text="@string/contacts_title"
         android:paddingStart="@dimen/vertical_margin"
         android:gravity="center_vertical"
         android:fontFamily="sans-serif-black"
@@ -18,28 +18,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
-        android:id="@+id/ivAdd"
+    <TextView
+        android:id="@+id/tvAddContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        android:layout_marginHorizontal="@dimen/common_horizontal_margin"
-        app:layout_constraintTop_toTopOf="@id/tvTitle"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
-        app:layout_constraintEnd_toStartOf="@id/ivListAddCheck"/>
-
-    <ImageView
-        android:id="@+id/ivListAddCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_playlist_add_check"
+        android:text="@string/contacts_add_button_name"
         android:layout_marginHorizontal="@dimen/common_horizontal_margin"
         app:layout_constraintTop_toTopOf="@id/tvTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRecipient"
+        android:id="@+id/rvContacts"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

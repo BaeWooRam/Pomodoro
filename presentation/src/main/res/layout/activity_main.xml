@@ -122,4 +122,16 @@
         app:layout_constraintTop_toTopOf="@id/npRestMinute"
         app:layout_constraintBottom_toBottomOf="@id/npRestMinute"/>
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddRecipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/white"
+        android:backgroundTint="?attr/colorPrimary"
+        android:src="@drawable/ic_add"
+        android:layout_marginVertical="@dimen/common_vertical_margin"
+        android:layout_marginHorizontal="@dimen/common_horizontal_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

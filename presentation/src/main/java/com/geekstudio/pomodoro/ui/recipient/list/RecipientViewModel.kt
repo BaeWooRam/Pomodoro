@@ -46,10 +46,10 @@ class RecipientViewModel(
     /**
      *
      */
-    fun getRecipientFromPhoneNumber(phoneNumber:String, taskListener: TaskListener<List<RecipientEntity>>){
+    fun getRecipientFromSendId(sendId:String, taskListener: TaskListener<List<RecipientEntity>>){
         scope.launch {
             kotlin.runCatching {
-                recipientLocalDataSourceImpl.getSearchRecipientFromPhoneNumber(phoneNumber)
+                recipientLocalDataSourceImpl.getSearchRecipientFromSendId(sendId)
             }.onSuccess {
                 taskListener.onSuccess(it)
             }.onFailure {

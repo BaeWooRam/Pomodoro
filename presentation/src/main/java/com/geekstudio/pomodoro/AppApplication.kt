@@ -15,6 +15,7 @@ import com.geekstudio.pomodoro.module.appModule
 import com.geekstudio.pomodoro.module.notificationModule
 import com.geekstudio.pomodoro.module.viewModelModule
 import com.geekstudio.pomodoro.service.ForegroundService
+import com.kakao.sdk.common.KakaoSdk
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -27,6 +28,7 @@ class AppApplication : Application() {
         instance = this@AppApplication
 
         initKoin()
+        initKakaoSdk()
     }
 
     private fun initKoin(){
@@ -35,6 +37,11 @@ class AppApplication : Application() {
             androidContext(this@AppApplication)
             modules(appModule, viewModelModule, notificationModule)
         }
+    }
+
+    private fun initKakaoSdk(){
+        // Kakao SDK 초기화
+        KakaoSdk.init(this@AppApplication, "bf528b934133e275673174bccc1a8785")
     }
 
     fun progressON(activity: Activity?) {

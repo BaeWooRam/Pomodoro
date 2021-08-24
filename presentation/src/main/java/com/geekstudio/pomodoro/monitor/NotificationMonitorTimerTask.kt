@@ -4,8 +4,8 @@ import android.util.Log
 import com.geekstudio.data.notification.RestNotification
 import com.geekstudio.data.notification.WorkNotification
 import com.geekstudio.data.repository.local.NotificationTimeLocalDataSourceImp
-import com.geekstudio.data.kakao.SendKakao
-import com.geekstudio.data.send.SendKakaoBuilder
+import com.geekstudio.data.send.BaseSend
+import com.geekstudio.data.send.SendSmsBuilder
 import com.geekstudio.entity.NotificationState
 import com.geekstudio.pomodoro.Config
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +22,7 @@ class NotificationMonitorTimerTask(
     private val notificationTimeLocalDataSourceImp: NotificationTimeLocalDataSourceImp,
     private val restNotification: RestNotification,
     private val workNotification: WorkNotification,
-) : TimerTask(), SendKakao.SmsListener {
+) : TimerTask(), BaseSend.SmsListener {
     private val debugTag: String = javaClass.simpleName
     private val scope = CoroutineScope(Dispatchers.Default)
     private var state: NotificationState = NotificationState.Work
@@ -64,8 +64,11 @@ class NotificationMonitorTimerTask(
     }
 
 
-    private fun getWorkMessageSender(): SendKakaoBuilder.Sender? {
-        return SendKakaoBuilder()
+    /**
+     * 일 SMS 전송자
+     */
+    private fun getWorkMessageSender(): SendSmsBuilder.Sender? {
+        return SendSmsBuilder()
             .target("01092055472")
             .message("일하세요")
             .listener(this@NotificationMonitorTimerTask)
@@ -73,8 +76,11 @@ class NotificationMonitorTimerTask(
     }
 
 
-    private fun getRestMessageSender(): SendKakaoBuilder.Sender? {
-        return SendKakaoBuilder()
+    /**
+     * 휴식 SMS 전송자
+     */
+    private fun getRestMessageSender(): SendSmsBuilder.Sender? {
+        return SendSmsBuilder()
             .target("01092055472")
             .message("휴식하세요")
             .listener(this@NotificationMonitorTimerTask)

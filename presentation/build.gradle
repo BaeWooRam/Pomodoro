@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -56,6 +57,9 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
 
     implementation "androidx.room:room-runtime:$room_version"
+
+    //카카오 친구 & 메시지
+    implementation "com.kakao.sdk:v2-talk:$kakao_version"
 
     //multi module
     implementation project(':domain')

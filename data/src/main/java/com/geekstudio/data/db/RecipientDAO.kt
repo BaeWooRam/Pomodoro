@@ -11,8 +11,8 @@ interface RecipientDAO {
     @Query("SELECT * FROM RecipientEntity WHERE id IN (:id)")
     fun getRecipientFromId(id: Int): List<RecipientEntity>
 
-    @Query("SELECT * FROM RecipientEntity WHERE phoneNumber IN (:phoneNumber)")
-    fun getRecipientFromPhoneNumber(phoneNumber: String): List<RecipientEntity>?
+    @Query("SELECT * FROM RecipientEntity WHERE sendId IN (:sendId)")
+    fun getRecipientFromSendId(sendId: String): List<RecipientEntity>?
 
     @Query("SELECT * FROM RecipientEntity WHERE name IN (:name)")
     fun getRecipientFromName(name: String): List<RecipientEntity>?

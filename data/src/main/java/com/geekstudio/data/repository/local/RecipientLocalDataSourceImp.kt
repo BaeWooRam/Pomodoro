@@ -12,8 +12,8 @@ class RecipientLocalDataSourceImp(private val dao: RecipientDAO) : RecipientLoca
         return dao.getRecipientFromName(name) ?: arrayListOf()
     }
 
-    override suspend fun getSearchRecipientFromPhoneNumber(phoneNumber: String): List<RecipientEntity>{
-       return dao.getRecipientFromPhoneNumber(phoneNumber) ?: arrayListOf()
+    override suspend fun getSearchRecipientFromSendId(sendId: String): List<RecipientEntity>{
+       return dao.getRecipientFromSendId(sendId) ?: arrayListOf()
     }
 
     override suspend fun deleteAllRecipient() = dao.deleteAllRecipient()

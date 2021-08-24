@@ -14,10 +14,10 @@
         tools:text="이름"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvPhoneNumber"/>
+        app:layout_constraintBottom_toTopOf="@id/tvSendId"/>
 
     <TextView
-        android:id="@+id/tvPhoneNumber"
+        android:id="@+id/tvSendId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -28,7 +28,10 @@
 
 
     <ImageView
-        android:id="@+id/ivRecipientType"
+        android:id="@+id/ivProfile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.NumberPicker
 import com.geekstudio.entity.NotificationTime
 import com.geekstudio.pomodoro.R
@@ -13,9 +14,11 @@ import com.geekstudio.pomodoro.permission.Permission
 import com.geekstudio.pomodoro.service.ForegroundService
 import com.geekstudio.pomodoro.ui.base.BaseActivity
 import com.geekstudio.pomodoro.ui.base.BasePermissionActivity
+import com.geekstudio.pomodoro.ui.recipient.list.RecipientActivity
+import com.geekstudio.pomodoro.util.ActivityUtil
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BasePermissionActivity(), NumberPicker.OnValueChangeListener {
+class MainActivity : BasePermissionActivity(), NumberPicker.OnValueChangeListener, View.OnClickListener{
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModel<MainViewModel>()
     private var serviceIntent: Intent? = null
@@ -56,6 +59,9 @@ class MainActivity : BasePermissionActivity(), NumberPicker.OnValueChangeListene
     }
 
     private fun initView() {
+        //FAB 클릭 리스너 초기화
+        binding.fabAddRecipient.setOnClickListener(this@MainActivity)
+
         val notificationTime = viewModel.getNotificationTime()
 
         //NumberPick 초기화
@@ -117,5 +123,11 @@ class MainActivity : BasePermissionActivity(), NumberPicker.OnValueChangeListene
         super.onDestroy()
         if(serviceIntent != null)
             stopService(serviceIntent)
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.fabAddRecipient -> ActivityUtil.openActivity(this@MainActivity, RecipientActivity::class.java)
+        }
     }
 }
