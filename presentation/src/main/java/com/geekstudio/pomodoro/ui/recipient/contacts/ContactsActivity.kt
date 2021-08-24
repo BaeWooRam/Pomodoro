@@ -12,7 +12,6 @@ import com.geekstudio.pomodoro.mapper.convertDtoToContacts
 import com.geekstudio.pomodoro.observer.BaseUiObserver
 import com.geekstudio.pomodoro.observer.UiObserverManager
 import com.geekstudio.pomodoro.permission.Permission
-import com.geekstudio.pomodoro.ui.base.BaseActivity
 import com.geekstudio.pomodoro.ui.base.BasePermissionActivity
 import com.geekstudio.pomodoro.ui.recipient.RecipientComponentViewHolder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,7 +21,7 @@ class ContactsActivity : BasePermissionActivity() {
     private val viewModel by viewModel<ContactsViewModel>()
     lateinit var binding: ActivityContactsBinding
     lateinit var adapter:ContactsRvAdapter
-    lateinit var baseObserver: BaseUiObserver
+    lateinit var uiObserver: BaseUiObserver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +55,7 @@ class ContactsActivity : BasePermissionActivity() {
     }
 
     private fun initObserver(){
-        baseObserver = object :BaseUiObserver{
+        uiObserver = object :BaseUiObserver{
             override fun getType(): BaseUiObserver.UiType {
                 return BaseUiObserver.UiType.Contacts
             }
@@ -78,6 +77,8 @@ class ContactsActivity : BasePermissionActivity() {
                 }
             }
         }
+
+        UiObserverManager.registerObserver(uiObserver)
     }
 
     override fun onDestroy() {
