@@ -120,7 +120,7 @@ class MainActivity : BasePermissionActivity(), NumberPicker.OnValueChangeListene
 
     override fun onDestroy() {
         super.onDestroy()
-
+        stopForegroundService()
     }
 
     override fun onClick(v: View?) {
