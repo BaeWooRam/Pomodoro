@@ -9,7 +9,7 @@ import com.geekstudio.data.repository.local.NotificationTimeLocalDataSourceImp
 import com.geekstudio.data.repository.local.RecipientLocalDataSourceImp
 import com.geekstudio.data.send.BaseSend
 import com.geekstudio.data.send.SendSmsBuilder
-import com.geekstudio.entity.NotificationState
+import com.geekstudio.entity.UserState
 import com.geekstudio.pomodoro.Config
 import com.geekstudio.pomodoro.R
 import kotlinx.coroutines.CoroutineScope
@@ -31,45 +31,66 @@ class NotificationMonitorTimerTask(
 ) : TimerTask(), BaseSend.SmsListener {
     private val debugTag: String = javaClass.simpleName
     private val scope = CoroutineScope(Dispatchers.Default)
-    private var state: NotificationState = NotificationState.Work
+    private var state: UserState = UserState.Work
     private var time: Int = 0
 
     private var workMessageSender:SendSmsBuilder.Sender? = null
     private var restMessageSender:SendSmsBuilder.Sender? = null
 
-    override fun run() {
-        Log.d(javaClass.simpleName, "NotificationMonitorTimerTask start time = $time")
-        time += Config.CONNECTION_MONITOR_TIME
-
+    init {
         initWorkMessageSender()
         initRestMessageSender()
+    }
+
+    override fun run() {
+        Log.d(debugTag, "NotificationMonitorTimerTask start! time = $time, state = $state")
+        time += Config.CONNECTION_MONITOR_TIME
 
         when (state) {
-            NotificationState.Work -> {
-                if (notificationTimeLocalDataSourceImp.getNotificationWorkTime().toSecond() != time)
+            UserState.Work -> {
+                if (!isSendTime(notificationTimeLocalDataSourceImp.getNotificationWorkTime().toSecond(), time))
                     return
 
                 scope.launch {
-                    Log.d(javaClass.simpleName, "WorkNotification send()")
-                    workNotification.send()
-                    workMessageSender?.send()
-                    state = NotificationState.Rest
+                    Log.d(debugTag, "WorkNotification send()")
+                    restNotification.send()
+
+                    val target = recipientLocalDataSourceImp.getAllRecipient(RecipientEntity.Type.Sms)
+                    Log.d(debugTag, "WorkNotification Sms send() target = $target")
+                    restMessageSender?.send(convertPhoneNumberList(target))
+
+                    state = UserState.Rest
                     time = 0
                 }
             }
-            NotificationState.Rest -> {
-                if (notificationTimeLocalDataSourceImp.getNotificationRestTime().toSecond() != time)
+            UserState.Rest -> {
+                if (!isSendTime(notificationTimeLocalDataSourceImp.getNotificationRestTime().toSecond(), time))
                     return
 
                 scope.launch {
-                    Log.d(javaClass.simpleName, "RestNotification send()")
-                    restNotification.send()
-                    restMessageSender?.send()
-                    state = NotificationState.Work
+                    Log.d(debugTag, "RestNotification send()")
+                    workNotification.send()
+
+                    val target = recipientLocalDataSourceImp.getAllRecipient(RecipientEntity.Type.Sms)
+                    Log.d(debugTag, "RestNotification Sms send() target = $target")
+                    workMessageSender?.send(convertPhoneNumberList(target))
+
+                    state = UserState.Work
                     time = 0
                 }
             }
         }
+    }
+
+    private fun isSendTime(standardTime: Int, targetTime: Int): Boolean {
+        if (standardTime == 0 || targetTime == 0)
+            return false
+
+        if(standardTime < targetTime)
+            return true
+
+
+        return targetTime == standardTime
     }
 
 
@@ -77,16 +98,14 @@ class NotificationMonitorTimerTask(
      * 일 SMS 전송자
      */
     private fun initWorkMessageSender(){
-        scope.launch {
-            val target = recipientLocalDataSourceImp.getAllRecipient(RecipientEntity.Type.Sms)
-            Log.d(javaClass.simpleName, "initWorkMessageSender() target = $target")
+        if(workMessageSender != null)
+            return
 
-            workMessageSender = SendSmsBuilder()
-                .target(convertPhoneNumberList(target))
-                .message(notificationTimeLocalDataSourceImp.getNotificationWorkContent() ?: context.getString(R.string.notification_time_content))
-                .listener(this@NotificationMonitorTimerTask)
-                .build()
-        }
+        workMessageSender = SendSmsBuilder()
+            .target(arrayListOf())
+            .message(notificationTimeLocalDataSourceImp.getNotificationWorkContent() ?: context.getString(R.string.notification_time_content))
+            .listener(this@NotificationMonitorTimerTask)
+            .build()
     }
 
     /**
@@ -95,7 +114,7 @@ class NotificationMonitorTimerTask(
     private fun initRestMessageSender() {
         scope.launch {
             val target = recipientLocalDataSourceImp.getAllRecipient()
-            Log.d(javaClass.simpleName, "initRestMessageSender() target = $target")
+            Log.d(debugTag, "initRestMessageSender() target = $target")
 
             restMessageSender =  SendSmsBuilder()
                 .target(convertPhoneNumberList(target))
@@ -116,10 +135,10 @@ class NotificationMonitorTimerTask(
     }
 
     override fun onSuccess() {
-        Log.d(javaClass.simpleName, "SendSms is onSuccess!")
+        Log.d(debugTag, "SendSms is onSuccess!")
     }
 
     override fun onFailure(e: Exception) {
-        Log.d(javaClass.simpleName, "SendSms is Failure : ${e.message}")
+        Log.d(debugTag, "SendSms is Failure : ${e.message}")
     }
 }

@@ -1,5 +1,5 @@
 package com.geekstudio.entity
 
-enum class NotificationState {
+enum class UserState {
     Work, Rest
 }

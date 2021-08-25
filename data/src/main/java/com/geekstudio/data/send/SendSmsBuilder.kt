@@ -32,9 +32,6 @@ class SendSmsBuilder : BaseSend<String, SendSmsBuilder.Sender> {
         if (message.isNullOrEmpty())
             return null
 
-        if (phoneNumbers.isEmpty())
-            return null
-
         return Sender(phoneNumbers, message!!, listener)
     }
 
@@ -49,6 +46,18 @@ class SendSmsBuilder : BaseSend<String, SendSmsBuilder.Sender> {
         private val smsManager = SmsManager.getDefault()
 
         suspend fun send() {
+            kotlin.runCatching {
+                phoneNumbers.forEach { phoneNumber ->
+                    smsManager.sendTextMessage(phoneNumber, null, msg, null, null)
+                }
+            }.onSuccess {
+                listener?.onSuccess()
+            }.onFailure {
+                listener?.onFailure(Exception(it))
+            }
+        }
+
+        suspend fun send(phoneNumbers: List<String>) {
             kotlin.runCatching {
                 phoneNumbers.forEach { phoneNumber ->
                     smsManager.sendTextMessage(phoneNumber, null, msg, null, null)

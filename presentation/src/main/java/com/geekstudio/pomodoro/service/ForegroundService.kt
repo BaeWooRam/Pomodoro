@@ -56,7 +56,7 @@ class ForegroundService : Service() {
                 NotificationCompat.Builder(applicationContext)
 
 
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
+        builder.setSmallIcon(R.drawable.ic_tomato)
             .setContentTitle(getString(R.string.notification_foreground_title))
             .setContentText(getString(R.string.notification_foreground_content))
             .setPriority(Notification.PRIORITY_DEFAULT)
@@ -121,7 +121,7 @@ class ForegroundService : Service() {
                 return NotificationData(
                     getString(R.string.notification_rest_time_title),
                     getString(R.string.notification_rest_time_content),
-                    R.drawable.ic_launcher_foreground,
+                    R.drawable.ic_tomato,
                     Config.NOTIFICATION_ID,
                     Intent(this@ForegroundService, SplashActivity::class.java)
                 )
@@ -143,7 +143,7 @@ class ForegroundService : Service() {
                 return NotificationData(
                     getString(R.string.notification_time_title),
                     getString(R.string.notification_time_content),
-                    R.drawable.ic_launcher_foreground,
+                    R.drawable.ic_tomato,
                     Config.NOTIFICATION_ID,
                     Intent(this@ForegroundService, SplashActivity::class.java)
                 )
