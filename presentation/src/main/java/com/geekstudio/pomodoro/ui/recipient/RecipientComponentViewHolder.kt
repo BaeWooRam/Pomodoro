@@ -11,6 +11,7 @@ import com.geekstudio.data.contacts.Contacts
 import com.geekstudio.data.db.RecipientEntity
 import com.geekstudio.pomodoro.R
 import com.geekstudio.pomodoro.mapper.convertContactsToDto
+import com.geekstudio.pomodoro.mapper.convertRecipientEntityToDto
 import com.geekstudio.pomodoro.ui.base.adapter.BaseViewHolder
 import com.geekstudio.pomodoro.observer.BaseUiObserver
 import com.geekstudio.pomodoro.observer.UiObserverManager
@@ -64,14 +65,14 @@ sealed class RecipientComponentViewHolder(itemView: View) : RecyclerView.ViewHol
      */
     class RecipientListViewHolder(
         parent: ViewGroup
-    ) : RecipientComponentViewHolder(inflate(parent, R.layout.item_recipient_list)), View.OnClickListener, BaseViewHolder<RecipientEntity>{
+    ) : RecipientComponentViewHolder(inflate(parent, R.layout.item_recipient_list)), View.OnLongClickListener, BaseViewHolder<RecipientEntity>{
         private val tvName = itemView.findViewById<TextView>(R.id.tvName)
         private val tvSendId = itemView.findViewById<TextView>(R.id.tvSendId)
         private val tvRecipientType = itemView.findViewById<TextView>(R.id.tvRecipientType)
         private var recipientEntity:RecipientEntity? = null
 
         init {
-            itemView.setOnClickListener(this@RecipientListViewHolder)
+            itemView.setOnLongClickListener(this@RecipientListViewHolder)
         }
 
         override fun bind(data: RecipientEntity) {
@@ -82,12 +83,20 @@ sealed class RecipientComponentViewHolder(itemView: View) : RecyclerView.ViewHol
             tvRecipientType.text = data.type.name
         }
 
-        override fun onClick(v: View?) {
+        override fun onLongClick(v: View?): Boolean {
+            if(recipientEntity == null)
+                return true
+
+            UiObserverManager.notifyUpdate(BaseUiObserver.UiType.Recipient, Bundle().apply {
+                putParcelable(BUNDLE_RECIPIENT_DATA, convertRecipientEntityToDto(recipientEntity!!))
+            })
+            return true
         }
     }
 
     companion object {
         const val BUNDLE_CONTACTS_DATA ="BundleContactsData"
+        const val BUNDLE_RECIPIENT_DATA ="BundleRecipientData"
 
         private fun inflate(parent: ViewGroup, layout: Int): View {
             return LayoutInflater.from(parent.context).inflate(layout, parent, false)

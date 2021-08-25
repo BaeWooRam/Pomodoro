@@ -4,7 +4,7 @@ import android.os.Bundle
 
 interface BaseUiObserver {
     enum class UiType{
-        Contacts
+        Recipient, Contacts
     }
 
     fun getType(): UiType

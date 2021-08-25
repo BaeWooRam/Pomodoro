@@ -73,4 +73,19 @@ class RecipientViewModel(
         }
     }
 
+    /**
+     *
+     */
+    fun deleteRecipient(recipient: RecipientEntity, taskCompleteListener: TaskCompleteListener){
+        scope.launch {
+            kotlin.runCatching {
+                recipientLocalDataSourceImpl.deleteRecipient(recipient)
+            }.onSuccess {
+                taskCompleteListener.onSuccess()
+            }.onFailure {
+                taskCompleteListener.onFailure(Exception(it))
+            }
+        }
+    }
+
 }

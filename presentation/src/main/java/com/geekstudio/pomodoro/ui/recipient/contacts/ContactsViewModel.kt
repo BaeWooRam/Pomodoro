@@ -34,6 +34,11 @@ class ContactsViewModel(
      */
     fun saveRecipient(contacts: Contacts, taskCompleteListener: TaskCompleteListener){
         scope.launch {
+            if(recipientLocalDataSourceImp.isExist(contacts.phoneNumber)) {
+                taskCompleteListener.onFailure(RecipientLocalDataSourceImp.RecipientIsExistException())
+                return@launch
+            }
+
             kotlin.runCatching {
                 val target = RecipientEntity(0, contacts.name, contacts.phoneNumber, RecipientEntity.Type.Sms)
                 recipientLocalDataSourceImp.insertRecipient(target)

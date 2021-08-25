@@ -7,14 +7,29 @@
 
     <string name="notification_rest_time_title">쉬는 시간</string>
     <string name="notification_rest_time_content">지금 당장 의자에서 엉덩이드세요</string>
+    <string name="notification_timer_start">시작</string>
+    <string name="notification_timer_stop">멈춤</string>
+
+    <!--  Notification Comment -->
+    <string name="notification_comment_title">알림 문구</string>
+    <string name="notification_comment_work_title">일하는 시간</string>
+    <string name="notification_comment_rest_title">쉬는 시간</string>
+    <string name="notification_comment_save">저장</string>
+
 
     <!-- 수신할 대상 -->
-    <string name="recipient_title">수신할 대상</string>
+    <string name="recipient_title">수신 설정</string>
+    <string name="recipient_menu_delete_title">삭제</string>
+    <string name="recipient_menu_modify_title">수정</string>
+    <string name="recipient_delete_complete">선택한 수신자 삭제 완료했습니다.</string>
+    <string name="recipient_no_item_content">현재 등록된 수신자가 없습니다.</string>
+    <string name="recipient_no_item_button_name">추가하기</string>
 
     <!-- 주소록 -->
     <string name="contacts_title">주소록</string>
     <string name="contacts_add_button_name">추가</string>
     <string name="contacts_save_complete">연락처 추가 완료했습니다.</string>
+    <string name="contacts_no_item_content">현재 디바이스에 연락처가 없습니다.</string>
 
     <!--  서비스 -->
     <string name="notification_foreground_title">Pomodoro 알림</string>
@@ -23,7 +38,10 @@
     <string name="notification_channel_name">알림</string>
     <string name="notification_channel_description">Pomodoro 쉬는 시간, 일하는 시간 알림</string>
 
+    <!--  에러 -->
     <string name="error_deny_permission">필수 권한 설정을 승인해주세요.</string>
+    <string name="error_is_exist_recipient">수신자가 이미 등록되어있습니다.</string>
+    <string name="error_delete_recipient">수신자 삭제 실패하였습니다.</string>
     <string name="error_get_contacts">연락처 목록을 가져오는데 실패하였습니다.</string>
     <string name="error_get_recipient">수신자 목록을 가져오는데 실패하였습니다.</string>
 </resources>

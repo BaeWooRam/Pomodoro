@@ -6,28 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
+
     <TextView
-        android:id="@+id/tvNotificationTime"
+        android:id="@+id/tvNotificationWorkComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/notification_time_title"
+        android:fontFamily="sans-serif-black"
+        android:textSize="@dimen/main_title_text_size"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginTop="@dimen/common_vertical_margin"
+        android:layout_marginStart="@dimen/common_horizontal_margin"/>
 
     <NumberPicker
         android:theme="@style/AppTheme.Picker"
         android:id="@+id/npHour"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/main_number_picker_width"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@id/tvHourTitle"
         app:layout_constraintTop_toTopOf="@id/tvHourTitle"
@@ -39,7 +48,7 @@
         android:layout_height="wrap_content"
         android:text="시간"
         android:textSize="@dimen/notification_timer_text_size"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="@dimen/common_horizontal_margin"
         android:fontFamily="sans-serif-black"
         app:layout_constraintEnd_toStartOf="@id/npMinute"
         app:layout_constraintTop_toTopOf="@id/npMinute"
@@ -48,14 +57,14 @@
     <NumberPicker
         android:theme="@style/AppTheme.Picker"
         android:id="@+id/npMinute"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/main_number_picker_width"
         android:layout_height="wrap_content"
         android:divider="@color/red_700"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNotificationTime"
-        app:layout_constraintBottom_toTopOf="@id/guideline"/>
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationWorkComment"
+        app:layout_constraintBottom_toTopOf="@id/guideline1"/>
 
     <TextView
         android:id="@+id/tvMinuteTitle"
@@ -71,9 +80,9 @@
     <NumberPicker
         android:theme="@style/AppTheme.Picker"
         android:id="@+id/npSecond"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/main_number_picker_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/common_horizontal_margin"
         app:layout_constraintStart_toEndOf="@id/tvMinuteTitle"
         app:layout_constraintTop_toTopOf="@id/tvMinuteTitle"
         app:layout_constraintBottom_toBottomOf="@id/tvMinuteTitle"/>
@@ -90,26 +99,29 @@
         app:layout_constraintBottom_toBottomOf="@id/npSecond"/>
 
     <TextView
-        android:id="@+id/tvNotificationRestTime"
+        android:id="@+id/tvNotificationRestComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/notification_rest_time_title"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="@dimen/main_title_text_size"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/common_vertical_margin"
+        android:layout_marginStart="@dimen/common_horizontal_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline"/>
+        app:layout_constraintTop_toBottomOf="@id/guideline1"/>
 
     <NumberPicker
         android:theme="@style/AppTheme.Picker"
         android:id="@+id/npRestMinute"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/main_number_picker_width"
         android:layout_height="wrap_content"
         android:divider="@color/red_700"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNotificationRestTime"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationRestComment"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"/>
 
     <TextView
         android:id="@+id/tvRestMinuteTitle"
@@ -122,13 +134,41 @@
         app:layout_constraintTop_toTopOf="@id/npRestMinute"
         app:layout_constraintBottom_toBottomOf="@id/npRestMinute"/>
 
+    <NumberPicker
+        android:theme="@style/AppTheme.Picker"
+        android:id="@+id/npRestSecond"
+        android:layout_width="@dimen/main_number_picker_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_horizontal_margin"
+        app:layout_constraintStart_toEndOf="@id/tvRestMinuteTitle"
+        app:layout_constraintTop_toTopOf="@id/tvRestMinuteTitle"
+        app:layout_constraintBottom_toBottomOf="@id/tvRestMinuteTitle"/>
+
+    <TextView
+        android:id="@+id/tvRestSecondTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="초"
+        android:textSize="@dimen/notification_timer_text_size"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintStart_toEndOf="@id/npRestSecond"
+        app:layout_constraintTop_toTopOf="@id/npRestSecond"
+        app:layout_constraintBottom_toBottomOf="@id/npRestSecond"/>
+
+    <Button
+        android:id="@+id/btnTimerStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_timer_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddRecipient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tint="@color/white"
-        android:backgroundTint="?attr/colorPrimary"
         android:src="@drawable/ic_add"
         android:layout_marginVertical="@dimen/common_vertical_margin"
         android:layout_marginHorizontal="@dimen/common_horizontal_margin"

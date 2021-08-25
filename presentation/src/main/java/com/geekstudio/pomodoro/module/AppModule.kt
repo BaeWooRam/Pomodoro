@@ -17,6 +17,7 @@ import com.geekstudio.pomodoro.R
 import com.geekstudio.pomodoro.monitor.NotificationMonitorTimerTask
 import com.geekstudio.pomodoro.ui.SplashActivity
 import com.geekstudio.pomodoro.ui.main.MainViewModel
+import com.geekstudio.pomodoro.ui.recipient.comment.CommentViewModel
 import com.geekstudio.pomodoro.ui.recipient.contacts.ContactsViewModel
 import com.geekstudio.pomodoro.ui.recipient.list.RecipientViewModel
 import com.kakao.sdk.talk.TalkApiClient
@@ -115,5 +116,9 @@ val viewModelModule = module {
 
     viewModel {
         ContactsViewModel(get(), get())
+    }
+
+    viewModel {
+        CommentViewModel(androidContext(), get())
     }
 }

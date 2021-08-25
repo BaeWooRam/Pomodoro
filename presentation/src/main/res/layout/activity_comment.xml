@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:text="@string/notification_comment_title"
+        android:paddingStart="@dimen/common_vertical_margin"
+        android:gravity="center_vertical"
+        android:fontFamily="sans-serif-black"
+        android:background="@color/white"
+        android:elevation="@dimen/common_elevation_low"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvNotificationWorkComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_comment_work_title"
+        android:fontFamily="sans-serif-black"
+        android:textSize="@dimen/main_title_text_size"
+        android:textColor="@color/black"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintBottom_toTopOf="@id/etWorkComment"
+        android:layout_marginTop="@dimen/common_vertical_margin"
+        android:layout_marginStart="@dimen/common_horizontal_margin"/>
+
+
+    <EditText
+        android:id="@+id/etWorkComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/common_vertical_margin"
+        android:layout_marginHorizontal="@dimen/common_horizontal_margin"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@id/tvNotificationWorkComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationWorkComment"
+        app:layout_constraintBottom_toTopOf="@id/tvNotificationRestComment"/>
+
+    <TextView
+        android:id="@+id/tvNotificationRestComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_comment_rest_title"
+        android:fontFamily="sans-serif-black"
+        android:textSize="@dimen/main_title_text_size"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/common_vertical_margin"
+        android:layout_marginStart="@dimen/common_horizontal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etWorkComment"
+        app:layout_constraintBottom_toTopOf="@id/etRestComment"/>
+
+    <EditText
+        android:id="@+id/etRestComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/common_vertical_margin"
+        android:layout_marginHorizontal="@dimen/common_horizontal_margin"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@id/tvNotificationRestComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationRestComment"
+        app:layout_constraintBottom_toTopOf="@id/btnSave"/>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_comment_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etRestComment"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
@@ -35,6 +37,10 @@
 
         <activity
             android:name=".ui.recipient.list.RecipientActivity"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".ui.recipient.comment.CommentActivity"
             android:launchMode="singleTop"/>
 
         <activity

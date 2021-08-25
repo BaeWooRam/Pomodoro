@@ -11,28 +11,37 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:text="@string/contacts_title"
-        android:paddingStart="@dimen/vertical_margin"
+        android:paddingStart="@dimen/common_vertical_margin"
         android:gravity="center_vertical"
         android:fontFamily="sans-serif-black"
+        android:background="@color/white"
+        android:elevation="@dimen/common_elevation_low"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/tvAddContacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contacts_add_button_name"
-        android:layout_marginHorizontal="@dimen/common_horizontal_margin"
-        app:layout_constraintTop_toTopOf="@id/tvTitle"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvContacts"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContacts"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.geekstudio.pomodoro.ui.custom.NoItemView
+        android:id="@+id/noItemView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"

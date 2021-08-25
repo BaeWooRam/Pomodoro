@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.geekstudio.data.notification.RestNotification
 import com.geekstudio.data.notification.WorkNotification
 import com.geekstudio.data.repository.local.NotificationTimeLocalDataSourceImp
+import com.geekstudio.data.repository.local.RecipientLocalDataSourceImp
 import com.geekstudio.pomodoro.Config
 import com.geekstudio.pomodoro.R
 import com.geekstudio.pomodoro.monitor.NotificationMonitorTimerTask
@@ -55,7 +56,7 @@ class ForegroundService : Service() {
                 NotificationCompat.Builder(applicationContext)
 
 
-        builder.setSmallIcon(R.drawable.ic_launcher_background)
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(getString(R.string.notification_foreground_title))
             .setContentText(getString(R.string.notification_foreground_content))
             .setPriority(Notification.PRIORITY_DEFAULT)
@@ -95,7 +96,9 @@ class ForegroundService : Service() {
         //타이머 시작
         timer.schedule(
             NotificationMonitorTimerTask(
+                baseContext,
                 inject<NotificationTimeLocalDataSourceImp>().value,
+                inject<RecipientLocalDataSourceImp>().value,
                 getRestNotification(),
                 getWorkNotification()
             ),

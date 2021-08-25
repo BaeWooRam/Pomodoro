@@ -1,8 +1,26 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="vertical_margin">16dp</dimen>
+    <dimen name="common_elevation_high">10dp</dimen>
+    <dimen name="common_elevation_mid">6dp</dimen>
+    <dimen name="common_elevation_low">2dp</dimen>
+
     <dimen name="common_vertical_margin">20dp</dimen>
     <dimen name="common_horizontal_margin">20dp</dimen>
 
     <dimen name="notification_timer_text_size">12dp</dimen>
+
+    <!-- 메인 -->
+    <dimen name="main_title_text_size">16dp</dimen>
+    <dimen name="main_number_picker_width">40dp</dimen>
+
+    <!-- 아이템 -->
+    <dimen name="item_recipient_gap">8dp</dimen>
+
+    <!-- Dialog -->
+    <dimen name="dialog_recipient_menu_width">100dp</dimen>
+    <dimen name="dialog_recipient_menu_height">40dp</dimen>
+
+    <!-- 노 아이템 뷰 -->
+    <dimen name="no_item_icon_size">80dp</dimen>
+    <dimen name="no_item_margin_top">12dp</dimen>
+    <dimen name="no_item_content_text_size">16dp</dimen>
 </resources>

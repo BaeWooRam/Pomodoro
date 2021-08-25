@@ -9,15 +9,14 @@ class MainViewModel(
 ) : BaseViewModel() {
 
     fun setNotificationRestTime(notificationTime: NotificationTime) {
-        notificationTimeLocalDataSourceImp.setNotificationWorkTime(notificationTime)
+        notificationTimeLocalDataSourceImp.setNotificationRestTime(notificationTime)
     }
 
     fun setNotificationTime(notificationTime: NotificationTime) {
-        notificationTimeLocalDataSourceImp.setNotificationRestTime(notificationTime)
+        notificationTimeLocalDataSourceImp.setNotificationWorkTime(notificationTime)
     }
 
     fun getNotificationRestTime(): NotificationTime = notificationTimeLocalDataSourceImp.getNotificationRestTime()
 
     fun getNotificationTime(): NotificationTime = notificationTimeLocalDataSourceImp.getNotificationWorkTime()
-
 }

@@ -9,4 +9,9 @@ interface NotificationTimeLocalDataSource {
     fun setNotificationRestTime(notificationTime: NotificationTime)
     fun getNotificationWorkTime(): NotificationTime
     fun getNotificationRestTime(): NotificationTime
+
+    fun setNotificationWorkContent(content: String)
+    fun setNotificationRestContent(content: String)
+    fun getNotificationWorkContent(): String?
+    fun getNotificationRestContent(): String?
 }

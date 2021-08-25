@@ -19,19 +19,34 @@ class NotificationTimeLocalDataSourceImp(private val appPreferences: AppPreferen
     override fun getNotificationWorkTime(): NotificationTime {
         val time = appPreferences.getNotificationWorkTime()
 
-        return if(time != null)
+        return if (time != null)
             NotificationTime.covertNotification(time)
         else
-            NotificationTime(0,25,0)
+            NotificationTime(0, 25, 0)
     }
 
     override fun getNotificationRestTime(): NotificationTime {
         val restTime = appPreferences.getNotificationRestTime()
 
-        return if(restTime != null)
+        return if (restTime != null)
             NotificationTime.covertNotification(restTime)
         else
-            NotificationTime(0,5,0)
+            NotificationTime(0, 5, 0)
     }
 
+    override fun setNotificationWorkContent(content: String) {
+        appPreferences.setNotificationWorkContent(content)
+    }
+
+    override fun setNotificationRestContent(content: String) {
+        appPreferences.setNotificationRestContent(content)
+    }
+
+    override fun getNotificationWorkContent(): String? {
+        return appPreferences.getNotificationWorkContent()
+    }
+
+    override fun getNotificationRestContent(): String? {
+        return appPreferences.getNotificationRestContent()
+    }
 }

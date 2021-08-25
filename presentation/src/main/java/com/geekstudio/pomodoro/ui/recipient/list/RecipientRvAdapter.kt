@@ -23,4 +23,11 @@ class RecipientRvAdapter(context: Context):BaseRvAdapter<RecipientComponentViewH
 
     override fun getItemCount(): Int = itemList.size
 
+
+    fun remove(recipientEntity: RecipientEntity){
+        val index = itemList.indexOf(recipientEntity)
+
+        itemList.remove(recipientEntity)
+        notifyItemRemoved(index)
+    }
 }
